@@ -25,5 +25,4 @@ The aim is to find a model suitable for **real-time, wearable applications**, ba
 
 ---
 
-## 📂 Repository Structure
 
