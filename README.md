@@ -1,50 +1,29 @@
-# Codebase for "P2E-WGAN: ECG Waveform Synthesis from PPG with Conditional Wasserstein Generative Adversarial Networks"
+# PPG-to-ECG Reconstruction Using Deep Learning
 
-Paper link: https://dl.acm.org/doi/10.1145/3412841.3441979
+This repository contains code for reconstructing **ECG signals from PPG signals** using deep learning models. The project compares a **Generative Adversarial Network (WGAN-GP)** with a **Bidirectional LSTM (BiLSTM)** to study their performance in signal reconstruction tasks relevant to **wearable health monitoring devices**.
 
-![](images/intro.png)
+---
 
-## Model
+## 📌 Project Overview
 
-#### ECG feature-based WGAN-GP loss function:
+Electrocardiogram (ECG) monitoring is critical for cardiovascular health, but continuous ECG measurement can be cumbersome. Photoplethysmography (PPG), commonly available in wearable devices, offers an indirect signal. This project explores **reconstructing ECG signals from PPG** using two approaches:
 
-![](images/objective.png)
+1. **WGAN-GP** – focuses on generating ECG signals that look realistic and preserve morphology.
+2. **BiLSTM** – deterministic regression model that optimizes pointwise accuracy.
 
-#### End-to-end 1D convolutional network architectures:
+The aim is to find a model suitable for **real-time, wearable applications**, balancing **accuracy, computational efficiency, and waveform fidelity**.
 
-![](images/models.png)
+---
 
-## Setup
+## 🧰 Features
 
-To install the dependencies, you can run in your terminal:
-```sh
-pip install -r requirements.txt
-```
+- ECG reconstruction from PPG signals
+- Comparison of **WGAN-GP** and **BiLSTM** models
+- MSE evaluation and visual signal comparison
+- Support for training and evaluation pipelines
+- Modular data handling for PPG, ECG, and ECG peaks
 
-A sampled dataset with ECG feature indices can be downloaded at [\[link\]](https://drive.google.com/file/d/1lLTerHpAx0w3Xg2QxZCuI6wAxpuC0TCH/view?usp=sharing).
+---
 
-## Usage
+## 📂 Repository Structure
 
-The code is structured as follows:
-- `data.py` contains functions to transform and feed the data to the model;
-- `models.py` defines deep neural network architectures; 
-- `utils.py` has utilities to benchmark the model and calculate the gradient penalty;
-- `p2e_wgan_gp.py` is the main entry to run the training and evaluation process (support running on multiple GPUs);
-    - `--dataset_prefix` flag sets the directory containing the .npy files 
-    - `--peaks_only` flag sets the model to reconstruct precisely only the main features for data augmentation purposes
-
-## Citation
-
-If you find this code helpful in any way, please cite our paper:
-
-    @inproceedings{vo2021p2e,
-        title={P2E-WGAN: ECG waveform synthesis from PPG with conditional wasserstein generative adversarial networks},
-        author={Vo, Khuong and Naeini, Emad Kasaeyan and Naderi, Amir and Jilani, Daniel and Rahmani, Amir M and Dutt, Nikil and Cao, Hung},
-        booktitle={Proceedings of the 36th Annual ACM Symposium on Applied Computing},
-        pages={1030--1036},
-        year={2021}
-    }
-
-## Acknowledgments
-
-The implementation of the WGAN-GP model is based on this repository: https://github.com/eriklindernoren/PyTorch-GAN
